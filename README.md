@@ -1,5 +1,7 @@
-# Masked Autoencoders for Point Cloud with Text and Image Guidance
-
+# MATIG
+=====
+we will update on next Monday(2025.2.17)
+=====
 Official code of "Masked Autoencoders for Point Cloud with Text and Image Guidance"(MATIG).
 
 ## Installation
