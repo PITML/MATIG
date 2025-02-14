@@ -1,0 +1,126 @@
+project_name: MATIG
+clip_embed_dim: 1280
+clip_embed_version: OpenCLIP
+model:
+  NAME: MATIG
+  group_size: 32
+  num_group: 384
+  input_channel: 6
+  loss:
+    type:
+    - contrasive
+    - rebuild
+    rebuild_loss: cdl2
+  out_channel: 1280
+  embedding_channel: 1024
+  context_channel: 1280
+  transformer_config:
+    mask_ratio: 0.2
+    mask_type: rand
+    drop_path_rate: 0.2
+    pc_encoder_dim: 512
+    embed_dim: 1024
+    encoder_type: base_no_lvis
+    base_no_lvis:
+      pc_model: eva02_base_patch14_448
+      pc_feat_dim: 768
+      ckpt_path: ./uni3d_pretrained/Uni3d-B-no-lvis.pt
+    base_lvis:
+      pc_model: eva02_base_patch14_448
+      pc_feat_dim: 768
+      ckpt_path: ./uni3d_pretrained/Uni3d-B-lvis.pt
+    large_no_lvis:
+      pc_model: eva02_large_patch14_448
+      pc_feat_dim: 1024
+      ckpt_path: ./uni3d_pretrained/Uni3d-L-no-lvis.pt
+    large_lvis:
+      pc_model: eva02_large_patch14_448
+      pc_feat_dim: 1024
+      ckpt_path: ./uni3d_pretrained/Uni3d-L.pt
+    giant_no_lvis:
+      pc_model: eva_giant_patch14_560
+      pc_feat_dim: 1408
+      ckpt_path: ./uni3d_pretrained/Uni3d-G-no-lvis.pt
+    giant_lvis:
+      pc_model: eva_giant_patch14_560
+      pc_feat_dim: 1408
+      ckpt_path: ./uni3d_pretrained/Uni3d-G.pt
+    decoder_depth: 8
+    decoder_dim: 512
+    decoder_num_heads: 16
+    decoder_attn_type: self
+  name: GuidanceUni3d
+  use_dense: true
+training:
+  use_openclip_optimizer_scheduler: false
+  lr: 0.0005
+  lr_decay_step: 10000
+  lr_decay_rate: 0.967
+  beta1: 0.9
+  beta2: 0.999
+  eps: 1.0e-08
+  warmup: 10000
+  max_epoch: 1000
+  log_freq: 10
+  save_freq: 1
+  lambda_img_contras: 1
+  lambda_text_contras: 1
+  lambda_rebuild: 1000
+  use_image_proj: false
+  use_text_proj: false
+  logit_scale_init: 14.28
+  use_mask: false
+  mask_threshold: 0.1
+dataset:
+  name: Four
+  train_split: meta_data/split/train_no_lvis.json
+  train_partial: -1
+  num_points: 10000
+  num_workers: 12
+  train_batch_size: 128
+  use_knn_negative_sample: false
+  negative_sample_num: 1
+  knn_path: meta_data/point_feat_knn.npy
+  y_up: true
+  normalize: true
+  random_z_rotate: true
+  use_color: true
+  rgb_random_drop_prob: 0.5
+  augment: true
+  text_source:
+  - text
+  - caption
+  - retrieval_text
+  use_text_filtering: true
+  use_prompt_engineering: true
+  gpt4_filtering_path: meta_data/gpt4_filtering.json
+  text_guidance_num: 8
+  image_guidance_num: 8
+modelnet40:
+  test_split: meta_data/modelnet40/test_split.json
+  test_pc: meta_data/modelnet40/test_pc.npy
+  num_points: 10000
+  num_workers: 0
+  test_batch_size: 100
+  clip_feat_path: meta_data/modelnet40/cat_name_pt_feat.npy
+  y_up: true
+objaverse_lvis:
+  split: meta_data/split/lvis.json
+  clip_feat_path: meta_data/lvis_cat_name_pt_feat.npy
+  num_points: 10000
+  num_workers: 6
+  batch_size: 100
+  y_up: true
+  normalize: true
+  use_color: true
+scanobjectnn:
+  data_path: meta_data/scanobjectnn/xyz_label.npy
+  num_points: 10000
+  num_workers: 0
+  test_batch_size: 100
+  clip_feat_path: meta_data/scanobjectnn/cat_name_pt_feat.npy
+  y_up: true
+
+evalute_lvis_model_path: matig_ckpt/Ensemble-noLVIS/best_lvis.pt
+evalute_modelnet40_model_path: matig_ckpt/Ensemble-noLVIS/best_modelnet40_overall.pt
+
