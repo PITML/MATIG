@@ -28,10 +28,11 @@ To use the Chamfer Loss functionality, you need to compile it first. Follow the 
 cd Point-MAE/extensions/chamfer_dist
 python setup.py install
 ```
+Our Docker container is built on Ubuntu 20.04 with an NVIDIA RTX A6000 GPU（with cuda 11.3 and 12.4， nvidia driver 550.142 , other version may also work）. Please note that inference results may vary slightly when running on different GPUs due to hardware and driver differences.
 
 ## inference
 To perform model inference, follow these steps:
-1. Download the pre-trained model MATIG from [baidu disk](https://pan.baidu.com/s/1s4VZgOe0_mK_oopufkXSeQ)(p9gg) or [google drive](https://drive.google.com/drive/folders/19Xt45384v1vX6PExgD5cVwAPzSefiAUL)
+1. Download the pre-trained model MATIG from [baidu disk](https://pan.baidu.com/s/1s4VZgOe0_mK_oopufkXSeQ)(p9gg) or [google drive](https://drive.google.com/drive/folders/19Xt45384v1vX6PExgD5cVwAPzSefiAUL), and we also provide the training log.
 2. Use the following command to perform inference with the downloaded model:
 ```shell
 python src/main.py --config src/configs/MATIG_LVIS.yaml
@@ -40,10 +41,17 @@ or
 ```shell
 python src/main.py --config src/configs/MATIG_noLVIS.yaml
 ```
+
 ## train
+You can start training the model using the following command:
 ```shell
 python src/main.py --train --config src/configs/MATIG_LVIS.yaml --trial_name MATIG_LVIS model.name=MATIG model.use_dense=True training.lr=0.0005 training.lr_decay_rate=0.967
 ```
+--config: Path to the configuration file.
+
+--trial_name: name of the trail
+
+## data
 
 ## Citation
 
