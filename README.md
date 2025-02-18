@@ -19,9 +19,21 @@ pip install omegaconf torch_redstone einops tqdm open3d
 
 
 2. docker
-we also provide a docker enviroment.
+we also provide a docker enviroment. 
+```shell
+docker run --gpus all --shm-size=64g -v Your_matig_path:/points -it pitml_exp:v1.1 /bin/bash
+```
 
-
+## inferenc
+the download
+```shell
+#
+python src/main.py --config src/configs/MATIG_LVIS.yaml
+```
+or
+```shell
+python src/main.py --config src/configs/MATIG_noLVIS.yaml
+```
 
 ## Citation
 
