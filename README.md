@@ -19,7 +19,7 @@ pip install omegaconf torch_redstone einops tqdm open3d
 
 
 2. docker
-We also provide a Docker environment to facilitate easy setup and consistent development across different platforms. [baidu disk](https://pan.baidu.com/s/1a_WEaRfEI25FzwyxcyCLUQ) (47m7). You can assess the running container with the following command:
+We also provide a Docker environment to facilitate easy setup and consistent development across different platforms. [baidu disk](https://pan.baidu.com/s/1qPU4x-R1fxJli_qNmfTFKg) (0rar). You can assess the running container with the following command:
 ```shell
 docker run --gpus all --shm-size=64g -v Your_matig_path:/points -it pitml_exp:v1.1 /bin/bash
 ```
@@ -32,7 +32,7 @@ Our Docker container is built on Ubuntu 20.04 with an NVIDIA RTX A6000 GPU（wit
 
 ## inference
 To perform model inference, follow these steps:
-1. Download the pre-trained model MATIG from [baidu disk](https://pan.baidu.com/s/1s4VZgOe0_mK_oopufkXSeQ)(p9gg) or [google drive](https://drive.google.com/drive/folders/19Xt45384v1vX6PExgD5cVwAPzSefiAUL), and we also provide the training log.
+1. Download the pre-trained model MATIG from [baidu disk](https://pan.baidu.com/s/1lw2L7BCpvp21hlOtbEGv2A)(1n7n) or [google drive](https://drive.google.com/drive/folders/19Xt45384v1vX6PExgD5cVwAPzSefiAUL), and we also provide the training log.
 2. Use the following command to perform inference with the downloaded model:
 ```shell
 python src/main.py --config src/configs/MATIG_LVIS.yaml
