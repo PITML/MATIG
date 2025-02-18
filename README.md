@@ -1,5 +1,6 @@
 # MATIG
 Official code of MATIG.
+
 PITML stands for Point Image Text Machine Learning.
 
 ## Installation
@@ -53,13 +54,12 @@ python src/main.py --train --config src/configs/MATIG_LVIS.yaml --trial_name MAT
 
 ## data
 We utilize the [OpenShape dataset](https://github.com/Colin97/OpenShape_code) for this project. You can access the dataset via the following link:
-OpenShape Dataset (https://huggingface.co/datasets/OpenShape/openshape-training-data/tree/main). 
+[OpenShape Dataset](https://huggingface.co/datasets/OpenShape/openshape-training-data/tree/main). 
 Alternatively, you can download the dataset (approximately 200GB) using the following command:
 ```python
 python download_data.py
 ```
+
 After downloading the dataset, configure the meta_data path and set up symbolic links (soft links"/mnt/data/objaverse-processed/merged_for_training_final/") for the data files as shown below:
-<img src="assets/matig_structure.png" alt="png" width="28%">
-[//]: # (![matig_structure]&#40;assets/matig_structure.png&#41;)
-## Citation
+<img src="assets/matig_structure.png" alt="png" width="40%">
 
