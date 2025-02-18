@@ -1,8 +1,6 @@
 # MATIG
-=====
-we will update README.md on next Monday(2025.2.17)
-=====
-Official code of "Masked Autoencoders for Point Cloud with Text and Image Guidance"(MATIG).
+Official code of MATIG.
+PITML stands for Point Image Text Machine Learning.
 
 ## Installation
 We provide two enviroments for running the MATIG inference or (and) training locally
@@ -43,6 +41,8 @@ python src/main.py --config src/configs/MATIG_noLVIS.yaml
 ```
 
 ## train
+Download the Uni3D base models, including "Ensembled w/o LVIS" and "Ensembled," from [GitHub - baaivision/Uni3D](https://github.com/baaivision/Uni3D). Move the downloaded models to the uni3d_models directory.
+
 You can start training the model using the following command:
 ```shell
 python src/main.py --train --config src/configs/MATIG_LVIS.yaml --trial_name MATIG_LVIS model.name=MATIG model.use_dense=True training.lr=0.0005 training.lr_decay_rate=0.967
@@ -52,6 +52,14 @@ python src/main.py --train --config src/configs/MATIG_LVIS.yaml --trial_name MAT
 --trial_name: name of the trail
 
 ## data
-
+We utilize the [OpenShape dataset](https://github.com/Colin97/OpenShape_code) for this project. You can access the dataset via the following link:
+OpenShape Dataset (https://huggingface.co/datasets/OpenShape/openshape-training-data/tree/main). 
+Alternatively, you can download the dataset (approximately 200GB) using the following command:
+```python
+python download_data.py
+```
+After downloading the dataset, configure the meta_data path and set up symbolic links (soft links"/mnt/data/objaverse-processed/merged_for_training_final/") for the data files as shown below:
+<img src="assets/matig_structure.png" alt="png" width="28%">
+[//]: # (![matig_structure]&#40;assets/matig_structure.png&#41;)
 ## Citation
 
